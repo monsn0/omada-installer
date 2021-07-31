@@ -5,7 +5,7 @@
 #date            :2021-07-29
 
 # Update this variable with the URL to latest available version
-OmadaPackageDl=https://static.tp-link.com/software/2021/202107/20210701/Omada_SDN_Controller_v4.4.3_linux_x64.deb
+OmadaPackageUrl=https://static.tp-link.com/software/2021/202107/20210701/Omada_SDN_Controller_v4.4.3_linux_x64.deb
 
 # Import the MongoDB 3.6 public key and add repo
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 58712A2291FA4AD5
@@ -18,5 +18,5 @@ apt install mongodb-org -y
 apt install jsvc -y
 
 # Download Omada Controller package and install
-wget $OmadaPackageDl -P /tmp/
-dpkg -i /tmp/$(basename $OmadaPackageDl)
+wget $OmadaPackageUrl -P /tmp/
+dpkg -i /tmp/$(basename $OmadaPackageUrl)
