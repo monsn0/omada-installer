@@ -9,9 +9,7 @@ Special thanks to @willquill for his Omada Ubuntu 16.04 guide :)
 # Install
 
 ```
-wget https://raw.githubusercontent.com/monsn0/omada-installer/main/install-omada-controller.sh -qP ~/
-chmod +x ~/install-omada-controller.sh
-sudo ~/install-omada-controller.sh
+curl -s https://raw.githubusercontent.com/monsn0/omada-installer/main/install-omada-controller.sh | sudo bash
 ```
 Once finished, access via web browser. You can reach it at IP:port of 8043 over HTTPS. ie. https://192.168.1.69:8043
 
