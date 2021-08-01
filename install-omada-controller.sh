@@ -25,11 +25,11 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 58712A2291FA4AD5
 echo "deb http://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/3.6 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 
 # Install/update dependencies
-apt update
-apt install openjdk-8-jre-headless -y
-apt install mongodb-org -y
-apt install jsvc -y
-apt install curl -y
+apt-get update
+apt-get install -y openjdk-8-jre-headless
+apt-get install -y mongodb-org
+apt-get install -y jsvc
+apt-get install -y curl
 
 # Download Omada Controller package and install
 wget $OmadaPackageUrl -P /tmp/
