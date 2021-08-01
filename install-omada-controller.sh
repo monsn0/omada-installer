@@ -1,6 +1,7 @@
 #!/bin/bash
 #title           :install-omada-controller.sh
 #description     :Omada Controller Installer for Ubuntu
+#supports        :Ubuntu 14.04, Ubuntu 16.04, Ubuntu 18.04
 #author          :monsn0
 #date            :2021-07-29
 
@@ -10,12 +11,14 @@ OmadaPackageUrl=https://static.tp-link.com/software/2021/202107/20210701/Omada_S
 OS=$(hostnamectl | grep "Operating System")
 echo $OS
 
-if [[ $OS =  *"Ubuntu 16.04"* ]]; then
+if [[ $OS = *"Ubuntu 14.04"* ]]; then
+    OsVer=trusty
+elif [[ $OS = *"Ubuntu 16.04"* ]]; then
     OsVer=xenial
-elif [[ $OS =  *"Ubuntu 18.04"* ]]; then
+elif [[ $OS = *"Ubuntu 18.04"* ]]; then
     OsVer=bionic
 else
-    echo "$(tput setaf 1)ERROR: Script only supports Ubuntu 16.04 or 18.04!"
+    echo "$(tput setaf 1)ERROR: Script only supports Ubuntu 14.04, 16.04, or 18.04!"
     exit
 fi
 
