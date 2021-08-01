@@ -38,6 +38,8 @@ elif [[ $StatusCheck = 1 ]]; then
             NO ) exit;;
         esac
     done
+else
+    exit
 fi
 
 # Import the MongoDB 3.6 public key and add repo
