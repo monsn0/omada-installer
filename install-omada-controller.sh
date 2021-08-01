@@ -8,7 +8,6 @@
 # URL of latest available version of the Omada Controller package
 OmadaPackageUrl=https://static.tp-link.com/software/2021/202107/20210701/Omada_SDN_Controller_v4.4.3_linux_x64.deb
 
-# Verify OS
 OS=$(hostnamectl | grep "Operating System")
 echo $OS
 
@@ -19,26 +18,7 @@ elif [[ $OS = *"Ubuntu 16.04"* ]]; then
 elif [[ $OS = *"Ubuntu 18.04"* ]]; then
     OsVer=bionic
 else
-    echo -e "\e[1;31mERROR: Script only supports Ubuntu 14.04, 16.04, or 18.04! \e[0m"
-    exit
-fi
-
-# Check if already installed
-StatusCheck=$(dpkg-query -W -f='${Status}' omadac 2>/dev/null | grep -c "ok installed")
-
-if [[ $StatusCheck = 0 ]]; then
-    echo "Omada Controller NOT installed. Proceeding with install."
-elif [[ $StatusCheck = 1 ]]; then
-    dpkg-query -s omadac
-    echo
-    echo -e "\e[1;33mWARNING: Omada Controller is already installed! Would you like to proceed anyways? \e[0m"
-    select yn in "YES" "NO"; do
-        case $yn in
-            YES ) break;;
-            NO ) exit;;
-        esac
-    done
-else
+    echo "$(tput setaf 1)ERROR: Script only supports Ubuntu 14.04, 16.04, or 18.04!"
     exit
 fi
 
