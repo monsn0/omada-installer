@@ -18,7 +18,7 @@ elif [[ $OS = *"Ubuntu 16.04"* ]]; then
 elif [[ $OS = *"Ubuntu 18.04"* ]]; then
     OsVer=bionic
 else
-    echo "$(tput setaf 1)ERROR: Script only supports Ubuntu 14.04, 16.04, or 18.04!"
+    echo -e "\e[1;31mERROR: Script only supports Ubuntu 14.04, 16.04, or 18.04! \e[0m"
     exit
 fi
 
