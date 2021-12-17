@@ -6,7 +6,7 @@
 #date            :2021-07-29
 
 # URL of latest available version of the Omada Controller package
-OmadaPackageUrl=https://static.tp-link.com/software/2021/202107/20210701/Omada_SDN_Controller_v4.4.3_linux_x64.deb
+OmadaPackageUrl=https://static.tp-link.com/upload/software/2021/202110/20211011/Omada_SDN_Controller_v4.4.6_Linux_x64.deb
 
 OS=$(hostnamectl | grep "Operating System")
 echo $OS
