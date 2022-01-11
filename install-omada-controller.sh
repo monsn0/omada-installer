@@ -1,12 +1,13 @@
 #!/bin/bash
 #title           :install-omada-controller.sh
 #description     :Omada Controller Installer for Ubuntu
-#supported       :Ubuntu 16.04, Ubuntu 18.04
+#supported       :Ubuntu 16.04, Ubuntu 18.04, Ubuntu 20.04
 #author          :monsn0
 #date            :2021-07-29
+#updated         :2022-01-10
 
 # URL of latest available version of the Omada Controller package
-OmadaPackageUrl=https://static.tp-link.com/upload/software/2021/202112/20211217/Omada_SDN_Controller_v4.4.8_Linux_x64.deb
+OmadaPackageUrl=https://static.tp-link.com/upload/software/2022/202201/20220107/Omada_SDN_Controller_v5.0.29_Linux_x64.deb
 
 OS=$(hostnamectl | grep "Operating System")
 echo $OS
@@ -15,22 +16,27 @@ if [[ $OS = *"Ubuntu 16.04"* ]]; then
     OsVer=xenial
 elif [[ $OS = *"Ubuntu 18.04"* ]]; then
     OsVer=bionic
+elif [[ $OS = *"Ubuntu 20.04"* ]]; then
+    OsVer=focal
 else
-    echo -e "\e[1;31mERROR: Script only supports Ubuntu 16.04 or 18.04! \e[0m"
+    echo -e "\e[1;31mERROR: Script only supports Ubuntu 16.04, 18.04 or 20.04! \e[0m"
     exit
 fi
 
-# Import the MongoDB 3.6 public key and add repo
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 58712A2291FA4AD5
-echo "deb http://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/3.6 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+# Import the MongoDB 4.4 public key and add repo
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 656408E390CFB1F5
+echo "deb http://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
 # Install/update dependencies
-apt-get update
-apt-get install -y openjdk-8-jre-headless
-apt-get install -y mongodb-org
-apt-get install -y jsvc
-apt-get install -y curl
+apt-get -qq update
+apt-get -y install openjdk-8-jre-headless
+apt-get -y install mongodb-org
+apt-get -y install jsvc
+apt-get -y install curl
 
 # Download Omada Controller package and install
 wget $OmadaPackageUrl -P /tmp/
 dpkg -i /tmp/$(basename $OmadaPackageUrl)
+
+hostIP=$(hostname -I | cut -f1 -d' ')
+echo -e "\n\nOmada SDN Controller is now installed! \nVisit https://${hostIP}:8043 from another machine on your network to manage. :)"
