@@ -4,12 +4,12 @@
 #supported       :Ubuntu 16.04, Ubuntu 18.04, Ubuntu 20.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2022-04-08
+#updated         :2022-04-09
 
 # URL of latest available version of the Omada Controller package
 OmadaPackageUrl=https://static.tp-link.com/upload/software/2022/202203/20220322/Omada_SDN_Controller_v5.1.7_Linux_x64.deb
 
-OS=$(hostnamectl | grep "Operating System")
+OS=$(hostnamectl status | grep "Operating System")
 echo $OS
 
 if [[ $OS = *"Ubuntu 16.04"* ]]; then
@@ -29,10 +29,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/4.4 multiverse" 
 
 # Install/update dependencies
 apt-get -qq update
-apt-get -y install openjdk-8-jre-headless
-apt-get -y install mongodb-org
-apt-get -y install jsvc
-apt-get -y install curl
+apt-get -y install openjdk-8-jre-headless mongodb-org jsvc curl
 
 # Download Omada Controller package and install
 wget $OmadaPackageUrl -P /tmp/
