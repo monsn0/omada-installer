@@ -4,10 +4,10 @@
 #supported       :Ubuntu 16.04, Ubuntu 18.04, Ubuntu 20.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2022-04-09
+#updated         :2022-07-03
 
 # URL of latest available version of the Omada Controller package
-OmadaPackageUrl=https://static.tp-link.com/upload/software/2022/202203/20220322/Omada_SDN_Controller_v5.1.7_Linux_x64.deb
+OmadaPackageUrl=https://static.tp-link.com/upload/software/2022/202205/20220507/Omada_SDN_Controller_v5.3.1_Linux_x64.deb
 
 OS=$(hostnamectl status | grep "Operating System")
 echo $OS
