@@ -7,7 +7,7 @@
 #updated         :2022-09-14
 
 # URL of latest available version of the Omada Controller package
-OmadaPackageUrl=https://static.tp-link.com/upload/software/2022/202208/20220822/Omada_SDN_Controller_v5.5.6_Linux_x64.deb
+OmadaPackageUrl=https://static.tp-link.com/upload/software/2023/202303/20230321/Omada_SDN_Controller_v5.9.31_Linux_x64.deb
 
 OS=$(hostnamectl status | grep "Operating System")
 echo $OS
