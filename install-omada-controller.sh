@@ -4,10 +4,7 @@
 #supported       :Ubuntu 16.04, Ubuntu 18.04, Ubuntu 20.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2022-12-17
-
-# URL of latest available version of the Omada Controller package
-OmadaPackageUrl=https://static.tp-link.com/upload/software/2023/202309/20230920/Omada_SDN_Controller_v5.12.7_Linux_x64.deb
+#updated         :2023-11-18
 
 OS=$(hostnamectl status | grep "Operating System")
 echo $OS
@@ -32,6 +29,7 @@ apt-get -qq update
 apt-get -y install openjdk-8-jre-headless mongodb-org jsvc curl
 
 # Download Omada Controller package and install
+OmadaPackageUrl=$(curl -s https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oP '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
 wget $OmadaPackageUrl -P /tmp/
 dpkg -i /tmp/$(basename $OmadaPackageUrl)
 
