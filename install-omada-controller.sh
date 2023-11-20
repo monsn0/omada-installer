@@ -26,9 +26,9 @@ elif [[ $OS = *"Ubuntu 22.04"* ]]; then
     # Install libssl 1.1 as required by MongoDB 4.4 on Ubuntu 22.04
     echo "[+] Installing libssl 1.1 package for Ubuntu 22.04"
     wget -qP /tmp/ http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
-    dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2_amd64.deb 1> /dev/null
+    dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2_amd64.deb &> /dev/null
 else
-    echo -e "\e[1;31mERROR: Script only supports Ubuntu 16.04, 18.04, 20.04 or 22.04! \e[0m"
+    echo -e "\e[1;31m[!] This script only supports Ubuntu 16.04, 18.04, 20.04 or 22.04! \e[0m"
     exit
 fi
 
@@ -49,7 +49,8 @@ echo "[+] Downloading latest Omada SDN Controller package"
 OmadaPackageUrl=$(curl -s https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oP '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
 wget -qP /tmp/ $OmadaPackageUrl
 echo "[+] Installing Omada SDN Controller"
-dpkg -i /tmp/$(basename $OmadaPackageUrl) 1> /dev/null
+dpkg -i /tmp/$(basename $OmadaPackageUrl) &> /dev/null
 
 hostIP=$(hostname -I | cut -f1 -d' ')
-echo -e "\n[+] Omada SDN Controller is now installed! :) \n[+] Visit https://${hostIP}:8043 to complete the inital setup wizard."
+echo -e "\e[0;32m[~] Omada Software Controller has been successfully installed! :)\e[0m"
+echo -e "\e[0;32m[~] Please visit https://${hostIP}:8043 to complete the inital setup wizard.\e[0m\n"
