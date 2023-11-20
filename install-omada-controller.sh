@@ -4,13 +4,15 @@
 #supported       :Ubuntu 16.04, Ubuntu 18.04, Ubuntu 20.04, Ubuntu 22.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2023-11-18
+#updated         :2023-11-19
 
-echo -e "TP-Link Omada SDN Controller Installer \nhttps://github.com/monsn0/omada-installer \n"
+echo -e "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo -e "TP-Link Omada Software Controller - Installer \nhttps://github.com/monsn0/omada-installer"
+echo -e "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 echo "[+] Checking for supported OS"
 OS=$(hostnamectl status | grep "Operating System")
-echo "[+] $OS"
+echo "[~] $OS"
 
 if [[ $OS = *"Ubuntu 16.04"* ]]; then
     OsVer=xenial
