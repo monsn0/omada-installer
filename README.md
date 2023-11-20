@@ -22,7 +22,7 @@ Ubuntu 20.04 is still the recommended release as MongoDB 4.4 (required version f
 Connect via SSH or console, run the following command and enjoy a sip of coffee ;)
 
 ```
-curl -s https://raw.githubusercontent.com/monsn0/omada-installer/main/install-omada-controller.sh | sudo bash
+curl -sS https://raw.githubusercontent.com/monsn0/omada-installer/main/install-omada-controller.sh | sudo bash
 ```
 
 Once finished, complete the inital setup wizard in your web browser via the URL in the final output.
