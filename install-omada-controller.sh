@@ -42,13 +42,13 @@ curl -fsSL https://pgp.mongodb.com/server-4.4.asc | gpg -o /usr/share/keyrings/m
 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/4.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-4.4.list
 
 # Package dependencies
+echo "[+] Installing MongoDB 4.4"
 apt-get -qq update
+apt-get -qq install mongodb-org &> /dev/null
 echo "[+] Installing OpenJDK 8 JRE (headless)"
 apt-get -qq install openjdk-8-jre-headless &> /dev/null
 echo "[+] Installing JSVC"
 apt-get -qq install jsvc &> /dev/null
-echo "[+] Installing MongoDB 4.4"
-apt-get -qq install mongodb-org &> /dev/null
 
 echo "[+] Downloading the latest Omada Software Controller package"
 OmadaPackageUrl=$(curl -fsSL https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oP '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
