@@ -40,7 +40,7 @@ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gp
 # Install/update dependencies
 echo "[+] Installing/updating OpenJDK 8, JSVC, MongoDB 4.4 and cURL"
 apt-get -qq update
-apt-get -qq install openjdk-8-jre-headless mongodb-org jsvc curl
+apt-get -qq install openjdk-8-jre-headless mongodb-org jsvc curl &> /dev/null
 
 # Download Omada Controller package and install
 echo "[+] Downloading latest Omada SDN Controller package"
