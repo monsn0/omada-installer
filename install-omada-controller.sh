@@ -12,7 +12,7 @@ echo "https://github.com/monsn0/omada-installer"
 echo -e "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 echo "[+] Verifying supported OS"
-OS=$(hostnamectl status | grep "Operating System")
+OS=$(hostnamectl status | grep "Operating System" | sed 's/^[ \t]*//')
 echo "[~] $OS"
 
 if [[ $OS = *"Ubuntu 16.04"* ]]; then
