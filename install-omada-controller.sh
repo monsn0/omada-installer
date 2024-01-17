@@ -4,7 +4,7 @@
 #supported       :Ubuntu 16.04, Ubuntu 18.04, Ubuntu 20.04, Ubuntu 22.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2023-11-19
+#updated         :2024-01-17
 
 echo -e "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "TP-Link Omada Software Controller - Installer"
@@ -53,7 +53,7 @@ apt-get -qq install jsvc &> /dev/null
 echo "[+] Downloading the latest Omada Software Controller package"
 OmadaPackageUrl=$(curl -fsSL https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oPi '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
 wget -qP /tmp/ $OmadaPackageUrl
-echo "[+] Installing Omada Software Controller"
+echo "[+] Installing $(basename $OmadaPackageUrl)"
 dpkg -i /tmp/$(basename $OmadaPackageUrl) &> /dev/null
 
 hostIP=$(hostname -I | cut -f1 -d' ')
