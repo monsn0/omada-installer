@@ -51,7 +51,7 @@ echo "[+] Installing JSVC"
 apt-get -qq install jsvc &> /dev/null
 
 echo "[+] Downloading the latest Omada Software Controller package"
-OmadaPackageUrl=$(curl -fsSL https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oP '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
+OmadaPackageUrl=$(curl -fsSL https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oPi '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
 wget -qP /tmp/ $OmadaPackageUrl
 echo "[+] Installing Omada Software Controller"
 dpkg -i /tmp/$(basename $OmadaPackageUrl) &> /dev/null
