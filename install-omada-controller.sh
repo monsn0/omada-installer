@@ -4,12 +4,18 @@
 #supported       :Ubuntu 16.04, Ubuntu 18.04, Ubuntu 20.04, Ubuntu 22.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2023-11-19
+#updated         :2024-04-07
 
 echo -e "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "TP-Link Omada Software Controller - Installer"
 echo "https://github.com/monsn0/omada-installer"
 echo -e "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+
+echo "[+] Verifying running as root"
+if [ `id -u` -ne 0 ]
+  then echo -e "\e[1;31m[!] Script requires to be ran as root. Please rerun using sudo. \e[0m"
+  exit
+fi
 
 echo "[+] Verifying supported OS"
 OS=$(hostnamectl status | grep "Operating System" | sed 's/^[ \t]*//')
