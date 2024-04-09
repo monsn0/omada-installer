@@ -8,10 +8,12 @@
 
 function os_ubuntu_base
 {
-    if [[ ! "$1" == "xenial" ]] || [[ ! "$1" == "bionic" ]] || [[ ! "$1" == "focal" ]] || [[ ! "$1" == "jammy" ]]; then
+    if [[ ! "$1" == "xenial" ]] && [[ ! "$1" == "bionic" ]] && [[ ! "$1" == "focal" ]] && [[ ! "$1" == "jammy" ]]; then
         echo -e "\e[1;31m[!] This script only supports Ubuntu 16.04, 18.04, 20.04 or 22.04! \e[0m"
         exit 1
-    elif [[ "$1" == "jammy" ]]; then
+    fi
+
+    if [[ "$1" == "jammy" ]]; then
         # $VERSION_CODENAME is also set to 'focal' as MongoDB 4.4 is not offically supported on 22.04
         # Install libssl 1.1 as required by MongoDB 4.4 on Ubuntu 22.04
         VERSION_CODENAME=focal
