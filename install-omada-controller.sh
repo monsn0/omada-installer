@@ -8,7 +8,7 @@
 
 function os_ubuntu_base
 {
-    if [[ ! "$1" == "xenial" ]] && [[ ! "$1" == "bionic" ]] && [[ ! "$1" == "focal" ]] && [[ ! "$1" == "jammy" ]]; then
+    if [[ "$1" != "xenial" && "$1" != "bionic" && "$1" != "focal" && "$1" != "jammy" ]]; then
         echo -e "\e[1;31m[!] This script only supports Ubuntu 16.04, 18.04, 20.04 or 22.04! \e[0m"
         exit 1
     fi
