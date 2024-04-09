@@ -81,8 +81,3 @@ fi
 hostIP=$(hostname -I | cut -f1 -d' ')
 echo -e "\e[0;32m[~] Omada Software Controller has been successfully installed! :)\e[0m"
 echo -e "\e[0;32m[~] Please visit https://${hostIP}:8043 to complete the inital setup wizard.\e[0m\n"
-
-
-
-grep -oP '\d+(\.\d+)+'
-grep -oP '(?<=\/v)\d+(\.\d+)+(?=_)'
