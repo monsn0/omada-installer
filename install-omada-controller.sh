@@ -45,7 +45,7 @@ function os_debuntu
     echo "[+] Downloading the latest Omada Software Controller package"
     OmadaPackageUrl=$(curl -fsSL https://www.tp-link.com/us/support/download/omada-software-controller/ | grep -oPi '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
     wget -qP /tmp/ $OmadaPackageUrl
-    echo "[+] Installing Omada Software Controller"
+    echo "[+] Installing Omada Software Controller $(basename $OmadaPackageUrl | grep -oP 'v\d+(\.\d+)+')"
     dpkg -i /tmp/$(basename $OmadaPackageUrl) &> /dev/null
 }
 
@@ -81,3 +81,8 @@ fi
 hostIP=$(hostname -I | cut -f1 -d' ')
 echo -e "\e[0;32m[~] Omada Software Controller has been successfully installed! :)\e[0m"
 echo -e "\e[0;32m[~] Please visit https://${hostIP}:8043 to complete the inital setup wizard.\e[0m\n"
+
+
+
+grep -oP '\d+(\.\d+)+'
+grep -oP '(?<=\/v)\d+(\.\d+)+(?=_)'
