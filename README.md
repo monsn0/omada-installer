@@ -8,15 +8,12 @@ Special thanks to @willquill for his Omada Ubuntu 16.04 guide :)
 # Supported releases
 - Ubuntu 22.04 LTS
 - Ubuntu 20.04 LTS
-- Ubuntu 18.04 LTS
-- Ubuntu 16.04 LTS
 
 # Recommended specs
-- Ubuntu 20.04 LTS
+- Ubuntu 22.04 LTS
+- x86_64 CPU which supports AVX ( Intel Sandy Bridge / AMD Bulldozer or later )
 - 8+ GB disk ( You'll need min 4 GB of free space for MongoDB as found by /u/axel2230 )
 - 1+ GB memory
-
-Ubuntu 20.04 is still the recommended release as MongoDB 4.4 (required version for Omada Controller) does not offically support 22.04 and therefore the installer will perform some workarounds to install on 22.04. That being said, it has been confirmed to work without any apparent issues.
 
 # Install
 Connect via SSH or console, run the following command and enjoy a sip of coffee ;)
