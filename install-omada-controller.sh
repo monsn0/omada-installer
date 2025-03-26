@@ -4,7 +4,7 @@
 #supported       :Ubuntu 20.04, Ubuntu 22.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2024-09-28
+#updated         :2025-03-26
 
 echo -e "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "TP-Link Omada Software Controller - Installer"
@@ -48,8 +48,8 @@ apt-get -qq update
 # Package dependencies
 echo "[+] Installing MongoDB 7.0"
 apt-get -qq install mongodb-org &> /dev/null
-echo "[+] Installing OpenJDK 8 JRE (headless)"
-apt-get -qq install openjdk-8-jre-headless &> /dev/null
+echo "[+] Installing OpenJDK 21 JRE (headless)"
+apt-get -qq install openjdk-21-jre-headless &> /dev/null
 echo "[+] Installing JSVC"
 apt-get -qq install jsvc &> /dev/null
 
