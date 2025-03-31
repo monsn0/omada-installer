@@ -1,10 +1,10 @@
 #!/bin/bash
 #title           :install-omada-controller.sh
 #description     :Installer for TP-Link Omada Software Controller
-#supported       :Ubuntu 20.04, Ubuntu 22.04
+#supported       :Ubuntu 20.04, Ubuntu 22.04, Ubuntu 24.04
 #author          :monsn0
 #date            :2021-07-29
-#updated         :2025-03-26
+#updated         :2025-03-31
 
 echo -e "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "TP-Link Omada Software Controller - Installer"
@@ -31,8 +31,10 @@ if [[ $OS = *"Ubuntu 20.04"* ]]; then
     OsVer=focal
 elif [[ $OS = *"Ubuntu 22.04"* ]]; then
     OsVer=jammy
+elif [[ $OS = *"Ubuntu 24.04"* ]]; then
+    OsVer=noble
 else
-    echo -e "\e[1;31m[!] Script currently only supports Ubuntu 20.04 or 22.04! \e[0m"
+    echo -e "\e[1;31m[!] Script currently only supports Ubuntu 20.04, 22.04 or 24.04! \e[0m"
     exit
 fi
 
@@ -40,13 +42,13 @@ echo "[+] Installing script prerequisites"
 apt-get -qq update
 apt-get -qq install gnupg curl wget &> /dev/null
 
-echo "[+] Importing the MongoDB 7.0 PGP key and creating the APT repository"
-curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/7.0 multiverse" > /etc/apt/sources.list.d/mongodb-org-7.0.list
+echo "[+] Importing the MongoDB 8.0 PGP key and creating the APT repository"
+curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/8.0 multiverse" > /etc/apt/sources.list.d/mongodb-org-8.0.list
 apt-get -qq update
 
 # Package dependencies
-echo "[+] Installing MongoDB 7.0"
+echo "[+] Installing MongoDB 8.0"
 apt-get -qq install mongodb-org &> /dev/null
 echo "[+] Installing OpenJDK 21 JRE (headless)"
 apt-get -qq install openjdk-21-jre-headless &> /dev/null
