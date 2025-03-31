@@ -40,7 +40,7 @@ fi
 
 echo "[+] Installing script prerequisites"
 apt-get -qq update
-apt-get -qq install gnupg curl wget &> /dev/null
+apt-get -qq install gnupg curl &> /dev/null
 
 echo "[+] Importing the MongoDB 8.0 PGP key and creating the APT repository"
 curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
@@ -57,9 +57,10 @@ apt-get -qq install jsvc &> /dev/null
 
 echo "[+] Downloading the latest Omada Software Controller package"
 OmadaPackageUrl=$(curl -fsSL https://support.omadanetworks.com/us/product/omada-software-controller/?resourceType=download | grep -oPi '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
-wget -qP /tmp/ $OmadaPackageUrl
-echo "[+] Installing Omada Software Controller $(echo $(basename $OmadaPackageUrl) | tr "_" "\n" | sed -n '4p')"
-dpkg -i /tmp/$(basename $OmadaPackageUrl) &> /dev/null
+OmadaPackageBasename=$(basename $OmadaPackageUrl)
+curl -sLo /tmp/$OmadaPackageBasename $OmadaPackageUrl
+echo "[+] Installing Omada Software Controller $(echo $OmadaPackageBasename | tr "_" "\n" | sed -n '4p')"
+dpkg -i /tmp/$OmadaPackageBasename &> /dev/null
 
 hostIP=$(hostname -I | cut -f1 -d' ')
 echo -e "\e[0;32m[~] Omada Software Controller has been successfully installed! :)\e[0m"
