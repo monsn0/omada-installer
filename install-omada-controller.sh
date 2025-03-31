@@ -47,6 +47,11 @@ curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg -o /usr/share
 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu $OsVer/mongodb-org/8.0 multiverse" > /etc/apt/sources.list.d/mongodb-org-8.0.list
 apt-get -qq update
 
+echo "[+] Downloading the latest Omada Software Controller package"
+OmadaPackageUrl=$(curl -fsSL https://support.omadanetworks.com/us/product/omada-software-controller/?resourceType=download | grep -oPi '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
+OmadaPackageBasename=$(basename $OmadaPackageUrl)
+curl -sLo /tmp/$OmadaPackageBasename $OmadaPackageUrl
+
 # Package dependencies
 echo "[+] Installing MongoDB 8.0"
 apt-get -qq install mongodb-org &> /dev/null
@@ -55,10 +60,6 @@ apt-get -qq install openjdk-21-jre-headless &> /dev/null
 echo "[+] Installing JSVC"
 apt-get -qq install jsvc &> /dev/null
 
-echo "[+] Downloading the latest Omada Software Controller package"
-OmadaPackageUrl=$(curl -fsSL https://support.omadanetworks.com/us/product/omada-software-controller/?resourceType=download | grep -oPi '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
-OmadaPackageBasename=$(basename $OmadaPackageUrl)
-curl -sLo /tmp/$OmadaPackageBasename $OmadaPackageUrl
 echo "[+] Installing Omada Software Controller $(echo $OmadaPackageBasename | tr "_" "\n" | sed -n '4p')"
 dpkg -i /tmp/$OmadaPackageBasename &> /dev/null
 
