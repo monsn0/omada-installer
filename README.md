@@ -6,11 +6,12 @@ This script was created due to convoluted or outdated guides on the web for inst
 Special thanks to @willquill for his Omada Ubuntu 16.04 guide :)
 
 # Supported releases
+- Ubuntu 24.04 LTS
 - Ubuntu 22.04 LTS
 - Ubuntu 20.04 LTS
 
 # Recommended specs
-- Ubuntu 22.04 LTS
+- Ubuntu 24.04 LTS
 - x86_64 CPU which supports AVX ( Intel Sandy Bridge / AMD Bulldozer or later )
 - 8+ GB disk ( You'll need min 4 GB of free space for MongoDB as found by /u/axel2230 )
 - 1+ GB memory
