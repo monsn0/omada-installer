@@ -1,0 +1,77 @@
+---
+# TP-Link Omada Software Controller - Installer
+# https://github.com/monsn0/omada-installer
+
+- name: Omada Installer
+  hosts: all
+  become: true
+  tasks:
+
+  - name: Install and update dependencies
+    apt:
+      name:
+        - adduser
+        - curl
+        - gnupg
+        - openjdk-21-jre-headless
+        - jsvc
+        - xz-utils
+      state: latest
+      update_cache: true
+    tags: always
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]
+
+  - name: Add MongoDB 8.0 APT key
+    apt_key:
+      url: https://www.mongodb.org/static/pgp/server-8.0.asc
+      keyring: /usr/share/keyrings/mongodb-server-8.0.gpg
+    tags: mongodb
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]
+
+  - name: Add MongoDB 8.0 APT repository
+    apt_repository:
+      repo: "deb [ arch=amd64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu {{ ansible_distribution_release }}/mongodb-org/8.0 multiverse"
+      filename: mongodb-org-8.0
+      state: present
+      update_cache: true
+    tags: mongodb
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]
+
+  - name: Install MongoDB 8.0
+    apt:
+      name:
+        - mongodb-org
+      state: latest
+    tags: mongodb
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]
+
+  - name: Obtain latest Omada SDN Controller package URL
+    shell: >
+      curl -fsSL https://support.omadanetworks.com/us/product/omada-software-controller/?resourceType=download |
+      grep -oPi '<a[^>]*href="\K[^"]*linux_x64_[0-9]*\.deb[^"]*' |
+      head -n 1
+    args:
+      warn: false
+    register: omada_pkg_url
+    tags: omadac
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]
+
+  - name: Download latest Omada SDN Controller
+    get_url:
+      url: "{{ omada_pkg_url.stdout }}"
+      dest: "/tmp/{{ omada_pkg_url.stdout | basename }}"
+    tags: omadac
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]
+
+  - name: Install Omada SDN Controller
+    apt:
+      deb: "/tmp/{{ omada_pkg_url.stdout | basename }}"
+    tags: omadac
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]
+
+  - name: Result
+    debug:
+      msg: >-
+        Omada Software Controller has been successfully installed! :)
+        Please visit https://{{ ansible_default_ipv4['address'] }}:8043 to complete the inital setup wizard.
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version in ["20", "22", "24"]

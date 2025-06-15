@@ -5,18 +5,18 @@ This script was created due to convoluted or outdated guides on the web for inst
 
 Special thanks to @willquill for his Omada Ubuntu 16.04 guide :)
 
-# Supported releases
+### Supported releases
 - Ubuntu 24.04 LTS
 - Ubuntu 22.04 LTS
 - Ubuntu 20.04 LTS
 
-# Recommended specs
+### Recommended specs
 - Ubuntu 24.04 LTS
 - x86_64 CPU which supports AVX ( Intel Sandy Bridge / AMD Bulldozer or later )
 - 8+ GB disk ( You'll need min 4 GB of free space for MongoDB as found by /u/axel2230 )
 - 1+ GB memory
 
-# Install
+## Install
 Connect via SSH or console, run the following command and enjoy a sip of coffee ;)
 
 ```
@@ -25,7 +25,15 @@ curl -sS https://raw.githubusercontent.com/monsn0/omada-installer/main/install-o
 
 Once finished, complete the inital setup wizard in your web browser via the URL in the final output.
 
-### Usage
+### Ansible playbook
+As an alternative to using the script, you can run the Ansible playbook instead
+>You'll need to have Ansible configured in advance
+
+```
+ansible-playbook --ask-become-pass omada-installer-playbook.yaml
+```
+
+## Usage
 To manage the controller service, use the `tpeap` script as root.
 The script is located as a symlink in `/usr/bin`
 
@@ -40,7 +48,7 @@ status     - show the status of the service(s)
 version    - show the version of the service(s)
 ```
 
-# Links
+## Links
 Offical guide: https://www.tp-link.com/us/support/faq/3272/
 
 Guide by @willquill : https://www.reddit.com/r/HomeNetworking/comments/mv1v9d/guide_how_to_set_up_omada_controller_in_ubuntu/ / https://github.com/willquill/omada-ubuntu
