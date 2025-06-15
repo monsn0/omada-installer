@@ -48,7 +48,7 @@ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gp
 apt-get -qq update
 
 echo "[+] Downloading the latest Omada Software Controller package"
-OmadaPackageUrl=$(curl -fsSL https://support.omadanetworks.com/us/product/omada-software-controller/?resourceType=download | grep -oPi '<a[^>]*href="\K[^"]*Linux_x64.deb[^"]*' | head -n 1)
+OmadaPackageUrl=$(curl -fsSL https://support.omadanetworks.com/us/product/omada-software-controller/?resourceType=download | grep -oPi '<a[^>]*href="\K[^"]*linux_x64_[0-9]*\.deb[^"]*' | head -n 1)
 OmadaPackageBasename=$(basename $OmadaPackageUrl)
 curl -sLo /tmp/$OmadaPackageBasename $OmadaPackageUrl
 
