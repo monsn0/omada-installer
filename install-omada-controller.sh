@@ -60,7 +60,7 @@ apt-get -qq install openjdk-21-jre-headless &> /dev/null
 echo "[+] Installing JSVC"
 apt-get -qq install jsvc &> /dev/null
 
-echo "[+] Installing Omada Software Controller $(echo $OmadaPackageBasename | tr "_" "\n" | sed -n '4p')"
+echo "[+] Installing Omada Software Controller $(echo $OmadaPackageBasename | tr "_" "\n" | sed -n '2p')"
 dpkg -i /tmp/$OmadaPackageBasename &> /dev/null
 
 hostIP=$(hostname -I | cut -f1 -d' ')
