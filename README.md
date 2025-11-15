@@ -13,11 +13,13 @@ Special thanks to @willquill for his Omada Ubuntu 16.04 guide :)
 ### Recommended specs
 - Ubuntu 24.04 LTS
 - x86_64 CPU which supports AVX ( Intel Sandy Bridge / AMD Bulldozer or later )
+- 1+ CPU cores ( You may want to use 2 cores for the inital install )
+- 4+ GB memory
 - 8+ GB disk ( You'll need min 4 GB of free space for MongoDB as found by /u/axel2230 )
-- 1+ GB memory
 
 ## Install
 Connect via SSH or console, run the following command and enjoy a sip of coffee ;)
+> You'll need curl installed which can be installed by running `sudo apt install curl`
 
 ```
 curl -sS https://raw.githubusercontent.com/monsn0/omada-installer/main/install-omada-controller.sh | sudo bash
@@ -27,7 +29,7 @@ Once finished, complete the inital setup wizard in your web browser via the URL 
 
 ### Ansible playbook
 As an alternative to using the script, you can run the Ansible playbook instead
->You'll need to have Ansible configured in advance
+> You'll need to have Ansible configured in advance
 
 ```
 ansible-playbook --ask-become-pass omada-installer-playbook.yaml
